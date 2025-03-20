@@ -12,3 +12,5 @@ if ($id == 0) {
 } else {
     editarCliente($conexao, $nome, $cpf, $endereco, $id);
 }
+
+header("Location: listarClientes.php");

@@ -18,8 +18,10 @@ function salvarCliente($conexao, $nome, $cpf, $endereco) {
     
     mysqli_stmt_bind_param($comando, 'sss', $nome, $cpf, $endereco);
     
-    mysqli_stmt_execute($comando);
+    $funcionou = mysqli_stmt_execute($comando);
     mysqli_stmt_close($comando);
+    
+    return $funcionou;
 }
 
 function listarClientes($conexao) {

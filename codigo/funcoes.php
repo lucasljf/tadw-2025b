@@ -51,13 +51,30 @@ function editarCliente($conexao, $nome, $cpf, $endereco, $id) {
     return $funcionou;    
 }
 
-// deletarProduto()
-// salvarProduto()
-// listarProdutos()
-// editarProduto()
+function deletarProduto($conexao, $idproduto) {};
+
+function listarProdutos() {};
+
+function salvarProduto() {};
+
+function editarProduto() {};
+
+
+//desafio
+function salvarUsuario() {};
+
+function salvarVenda() {};
+
+// retornar uma variável com todos os dados do cliente
+function pesquisarClienteId() {};
+
+// retornar uma variável com todos os dados do produto
+function pesquisarProdutoId() {};
+
+//mostrar o nome do cliente ao invés do id
+//mostrar o nome do produto ao invés do id
+function listarVendas() {};
 
 // 1. Faz a função
 // 2. Crie um arquivo de teste (pasta tests)
-// 3. Se funcionou, você incorpora a função no projeto.
-
 ?>

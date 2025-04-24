@@ -77,6 +77,10 @@ function salvarVenda($conexao, $idcliente, $valor_total, $data) {
     return $id_venda;
 };
 
+function salvarItemVenda($conexao, $id_venda, $id_produto, $quantidade) {
+
+}
+
 // retornar uma variável com todos os dados do cliente
 function pesquisarClienteId($conexao, $idcliente) {
     $sql = "SELECT * FROM tb_cliente WHERE idcliente = ?";
@@ -99,6 +103,8 @@ function pesquisarProdutoId() {};
 //mostrar o nome do cliente ao invés do id
 //mostrar o nome do produto ao invés do id
 function listarVendas() {};
+
+function listarItensVenda($conexao, $id_venda) {};
 
 // 1. Faz a função
 // 2. Crie um arquivo de teste (pasta tests)

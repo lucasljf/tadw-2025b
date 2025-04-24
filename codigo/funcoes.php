@@ -63,16 +63,18 @@ function editarProduto() {};
 //desafio
 function salvarUsuario() {};
 
-function salvarVenda($conexao, $idcliente, $idproduto, $valor_total, $data) {
-    $sql = "INSERT INTO tb_venda (idcliente, idproduto, valor_total, data) VALUES (?, ?, ?, ?)";
+function salvarVenda($conexao, $idcliente, $valor_total, $data) {
+    $sql = "INSERT INTO tb_venda (idcliente, valor_total, data) VALUES (?, ?, ?)";
     $comando = mysqli_prepare($conexao, $sql);
 
-    mysqli_stmt_bind_param($comando, 'iids', $idcliente, $idproduto, $valor_total, $data);
+    mysqli_stmt_bind_param($comando, 'ids', $idcliente, $valor_total, $data);
 
-    $funcionou = mysqli_stmt_execute($comando);
+    mysqli_stmt_execute($comando);
+    
+    $id_venda = mysqli_stmt_insert_id($comando);
     mysqli_stmt_close($comando);
     
-    return $funcionou;
+    return $id_venda;
 };
 
 // retornar uma variável com todos os dados do cliente

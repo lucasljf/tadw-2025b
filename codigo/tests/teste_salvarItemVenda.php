@@ -1,9 +1,10 @@
 <?php
-
 require_once "../conexao.php";
 require_once "../funcoes.php";
 
-$id_venda = 2;
-$id_produto = 2;
+$idvenda = 2;
+$idproduto = 1;
+$quantidade = 10;
 
-salvarItemVenda($conexao, $id_venda, $id_produto);
+salvarItemVenda($conexao, $idvenda, $idproduto, $quantidade);
+?>

@@ -12,11 +12,11 @@ function deletarCliente($conexao, $idcliente) {
     return $funcionou;
 }
 
-function salvarCliente($conexao, $nome, $cpf, $endereco) {
-    $sql = "INSERT INTO tb_cliente (nome, cpf, endereco) VALUES (?, ?, ?)";
+function salvarCliente($conexao, $nome, $cpf, $endereco, $foto) {
+    $sql = "INSERT INTO tb_cliente (nome, cpf, endereco, foto) VALUES (?, ?, ?, ?)";
     $comando = mysqli_prepare($conexao, $sql);
     
-    mysqli_stmt_bind_param($comando, 'sss', $nome, $cpf, $endereco);
+    mysqli_stmt_bind_param($comando, 'ssss', $nome, $cpf, $endereco, $foto);
     
     $funcionou = mysqli_stmt_execute($comando);
     mysqli_stmt_close($comando);

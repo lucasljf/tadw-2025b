@@ -3,17 +3,14 @@
         // echo "editar";
 
         require_once "conexao.php";
+        require_once "funcoes.php";
+
         $id = $_GET['id'];
         
-        $sql = "SELECT * FROM tb_cliente WHERE idcliente = $id";
-
-        $resultados = mysqli_query($conexao, $sql);
-
-        $linha = mysqli_fetch_array($resultados);
-
-        $nome = $linha['nome'];
-        $cpf = $linha['cpf'];
-        $endereco = $linha['endereco'];
+        $cliente = pesquisarClienteId($conexao, $id);
+        $nome = $cliente['nome'];
+        $cpf = $cliente['cpf'];
+        $endereco = $cliente['endereco'];
 
         $botao = "Atualizar";
     }
@@ -36,7 +33,10 @@
 </head>
 <body>
     <h1>Cadastro de Cliente</h1>
-    <form action="salvarCliente.php?id=<?php echo $id; ?>" method="post">
+    <form action="salvarCliente.php?id=<?php echo $id; ?>" method="post" enctype="multipart/form-data">
+        Foto: <br>
+        <input type="file" name="foto"> <br><br>
+
         Nome: <br>
         <input type="text" name="nome" value="<?php echo $nome; ?>"> <br><br>
         CPF: <br>

@@ -5,6 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        img {
+            width: 50px;
+            height: 50px;
+        }
+    </style>
 </head>
 
 <body>
@@ -23,6 +29,7 @@
         <table border="1">
             <tr>
                 <td>Id</td>
+                <td>Foto</td>
                 <td>Nome</td>
                 <td>CPF</td>
                 <td>Endereço</td>
@@ -34,9 +41,11 @@
             $nome = $cliente['nome'];
             $cpf = $cliente['cpf'];
             $endereco = $cliente['endereco'];
+            $foto = $cliente['foto'];
 
             echo "<tr>";
             echo "<td>$idcliente</td>";
+            echo "<td><img src='fotos/$foto'></td>";
             echo "<td>$nome</td>";
             echo "<td>$cpf</td>";
             echo "<td>$endereco</td>";

@@ -1,3 +1,6 @@
+<?php
+    require_once "verificarLogado.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,14 +14,22 @@
         <li>
         <a href="formCliente.php">Cadastrar novo cliente</a>
         </li>
-        <li>
-            <a href="listarClientes.php">Lista de clientes cadastrados</a>
-        </li>
+
+        <?php
+            if ($_SESSION['tipo'] == 'g') {
+                echo "<li>";
+                echo "<a href='listarClientes.php'>Lista de clientes cadastrados</a>";
+                echo "</li>";
+            }
+        ?>
         <li>
             <a href="formProduto.php">Cadastrar novo produto</a>
         </li>
         <li>
             <a href="listarProdutos.php">Lista de produtos cadastrados</a>
+        </li>
+        <li>
+            <a href="deslogar.php">Sair</a>
         </li>
     </ul>
 </body>

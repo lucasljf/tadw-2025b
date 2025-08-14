@@ -17,3 +17,8 @@ function calcular() {
     document.getElementById('total').innerHTML = total;
     console.log("finalizou...");
 }
+
+function aviso() {
+    // alert("oi");
+    console.log("oi");
+}

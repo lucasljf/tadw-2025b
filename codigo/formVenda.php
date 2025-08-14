@@ -50,5 +50,6 @@
 
         <input type="submit" value="Registrar Venda">
     </form>
+    <button onclick="aviso()">Teste</button>
 </body>
 </html>

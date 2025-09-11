@@ -138,9 +138,59 @@ function pesquisarProdutoId($conexao, $idproduto) {
 
 //mostrar o nome do cliente ao invés do id
 //mostrar o nome do produto ao invés do id
-function listarVendas() {};
+function listarVendas($conexao) {
+    $sql = "SELECT * FROM tb_venda";
+    $comando = mysqli_prepare($conexao, $sql);
 
-function listarItensVenda($conexao, $id_venda) {};
+    mysqli_stmt_execute($comando);
+    $resultado = mysqli_stmt_get_result($comando);
+
+    $lista_vendas = [];
+    while ($venda = mysqli_fetch_assoc($resultado)) {
+        // buscando o cliente para pegar o nome
+        $id_cliente = $venda['idcliente'];
+        $cliente = pesquisarClienteId($conexao, $id_cliente);
+        $nome_cliente = $cliente['nome'];
+
+        $venda['nome_cliente'] = $nome_cliente;
+
+        // buscando os itens da venda
+        $id_venda = $venda['idvenda'];
+        $itens = listarItemVenda($conexao, $id_venda);
+
+        $venda['itens'] = $itens;
+
+        $lista_vendas[] = $venda;
+    }
+
+    mysqli_stmt_close($comando);
+    return $lista_vendas;
+};
+
+function listarItemVenda($conexao, $idvenda) {
+    $sql = "SELECT * FROM tb_item_venda WHERE idvenda = ?";
+    $comando = mysqli_prepare($conexao, $sql);
+
+    mysqli_stmt_bind_param($comando, 'i', $idvenda);
+
+    mysqli_stmt_execute($comando);
+    $resultado = mysqli_stmt_get_result($comando);
+
+    $lista_itens = [];
+    while ($item = mysqli_fetch_assoc($resultado)) {
+
+        // buscando o produto para pegar o nome
+        $id_produto = $item['idproduto'];
+        $produto = pesquisarProdutoId($conexao, $id_produto);
+        $nome_produto = $produto['nome'];
+
+        $item['nome_produto'] = $nome_produto;
+        $lista_itens[] = $item;
+    }
+
+    mysqli_stmt_close($comando);
+    return $lista_itens;
+}
 
 // 1. Faz a função
 // 2. Crie um arquivo de teste (pasta tests)

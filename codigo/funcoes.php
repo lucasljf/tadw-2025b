@@ -192,6 +192,67 @@ function listarItemVenda($conexao, $idvenda) {
     return $lista_itens;
 }
 
-// 1. Faz a função
-// 2. Crie um arquivo de teste (pasta tests)
+/**
+ * Verificar o login e senha de um usuário
+ * 
+ * A par.....
+ * 
+ * @param mysqli $conexao Uma conexão com o banco.
+ * @param string $email O e-mail informado pelo usuário.
+ * @param string $senha A senha informada pelo usuário.
+ * @return int ID do usuário.
+ * @throws 0 caso não encontre nenhum usuário.
+ * 
+ **/
+function verificarLogin($conexao, $email, $senha) {
+    $sql = "SELECT * FROM tb_usuario WHERE email = ?";
+
+    $comando = mysqli_prepare($conexao, $sql);
+    mysqli_stmt_bind_param($comando, 's', $email);
+
+    mysqli_stmt_execute($comando);
+    
+    $resultado = mysqli_stmt_get_result($comando);
+    $quantidade = mysqli_num_rows($resultado);
+    
+    $iduser = 0;
+    if ($quantidade != 0) {
+        $usuario = mysqli_fetch_assoc($resultado);
+        $senha_banco = $usuario['senha'];
+
+        if (password_verify($senha, $senha_banco)) {
+            $iduser = $usuario['idusuario'];
+        }
+    }
+    return $iduser;
+}
+
+/**
+ * Retorna os dados de um usuário a partir do ID.
+ *
+ * Retorna nome e tipo do usuário a partir do ID informado.
+ *
+ * @param mysqli $conexao Conexão com o banco.
+ * @param int $idusuario ID de um usuário existente.
+ * @return array $usuario['nome', 'tipo']
+ * @throws 0 Caso não encontrar o ID informado.
+ **/
+function pegarDadosUsuario($conexao, $idusuario) {
+    $sql = "SELECT nome, tipo FROM tb_usuario WHERE idusuario = ?";
+
+    $comando = mysqli_prepare($conexao, $sql);
+    mysqli_stmt_bind_param($comando, 'i', $idusuario);
+
+    mysqli_stmt_execute($comando);
+    $resultado = mysqli_stmt_get_result($comando);
+    $quantidade = mysqli_num_rows($resultado);
+    
+    if ($quantidade != 0) {
+        $usuario = mysqli_fetch_assoc($resultado);
+        return $usuario;
+    }
+    else {
+        return 0;
+    }
+}
 ?>

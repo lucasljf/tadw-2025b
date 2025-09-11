@@ -1,29 +1,27 @@
 <?php
     require_once "conexao.php";
+    require_once "funcoes.php";
 
     $email = $_POST['email'];
     $senha = $_POST['senha'];
 
-    $sql = "SELECT * FROM tb_usuario WHERE email = '$email'";
+    $idusuario = verificarLogin($conexao, $email, $senha);
 
-    $resultado = mysqli_query($conexao, $sql);
-
-    if (mysqli_num_rows($resultado) == 0) {
+    if ($idusuario == 0) {
         header("Location: index.php");
     }
     else {
-        $linha = mysqli_fetch_array($resultado);
-        $senha_banco = $linha['senha'];
-        $tipo = $linha['tipo'];
-
-        if (password_verify($senha, $senha_banco)) {
-            session_start();
-            $_SESSION['logado'] = 'sim';
-            $_SESSION['tipo'] = $tipo;
-            header("Location: home.php");
+        $usuario = pegarDadosUsuario($conexao, $idusuario);
+        
+        if ($usuario == 0) {
+            header("Location: index.php");
         }
         else {
-            header("Location: index.php");
+            session_start();
+            $_SESSION['logado'] = 'sim';
+            $_SESSION['tipo'] = $usuario['tipo'];
+            $_SESSION['nome'] = $usuario['nome'];
+            header("Location: home.php");
         }
     }
 ?>

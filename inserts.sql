@@ -5,7 +5,7 @@ INSERT INTO tb_produto (nome, tipo, preco_compra, preco_venda, margem_lucro, qua
 VALUES ("Coca-cola", "Alimento", 5.50, 11.00, 0, 200);
 
 INSERT INTO tb_produto (nome, tipo, preco_compra, preco_venda, margem_lucro, quantidade)
-VALUES ("Refrigerante A", "Alimento", 6.50, 11.00, 0, 100);
+VALUES ("Carvão", "Alimento", 9.50, 13.00, 0, 100);
 
 INSERT INTO tb_produto (nome, tipo, preco_compra, preco_venda, margem_lucro, quantidade)
-VALUES ("Carne", "Alimento", 21.10, 35.00, 0, 138);
+VALUES ("Picanha", "Alimento", 41.10, 65.00, 0, 138);

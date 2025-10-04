@@ -38,10 +38,10 @@ require_once "../funcoes.php";
             echo "<td>" . $produto['nome'] . "</td>";
             echo "<td> R$ " . $produto['preco_venda'] . "</td>";
             echo "<td>$quantidade</td>";
-            
+
             $total_unitario = $produto['preco_venda'] * $quantidade;
             $total += $total_unitario;
-            
+
             echo "<td> R$ $total_unitario</td>";
             echo "<td><a href='remover.php?id=$id'>[remover]</a></td>";
             echo "</tr>";
@@ -52,7 +52,8 @@ require_once "../funcoes.php";
     ?>
 
     <p>
-        <a href="index.php">Adicionar produtos</a>
+        <a href="index.php">Adicionar produtos</a> <br>
+        <a href="carrinho2.php">Ver carrinho (jQuery)</a>
     </p>
 </body>
 

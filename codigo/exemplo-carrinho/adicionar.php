@@ -17,8 +17,7 @@ if (!empty($_POST['idproduto'])) {
 
         if (isset($_SESSION['carrinho'][$id])) {
             $_SESSION['carrinho'][$id] += $quantidade;
-        }
-        else {
+        } else {
             $_SESSION['carrinho'][$id] = $quantidade;
         }
     }
@@ -26,4 +25,3 @@ if (!empty($_POST['idproduto'])) {
 
 header("Location: carrinho.php");
 exit;
-?>

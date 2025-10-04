@@ -9,4 +9,4 @@ if ($id && isset($_SESSION['carrinho'][$id])) {
 
 header("Location: carrinho.php");
 exit;
-?>
+

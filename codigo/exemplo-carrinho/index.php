@@ -21,22 +21,23 @@ require_once "../conexao.php";
 
         <ul>
             <?php
-                $produtos = listarProdutos($conexao);
+            $produtos = listarProdutos($conexao);
 
-                foreach ($produtos as $produto):
+            foreach ($produtos as $produto):
             ?>
-            <li>
-                <input type="checkbox" name="idproduto[]" value="<?php echo $produto['idproduto'] ?>"> R$ <span><?php echo $produto['preco_venda']; ?></span> -- <?php echo $produto['nome']; ?>
+                <li>
+                    <input type="checkbox" name="idproduto[]" value="<?php echo $produto['idproduto'] ?>"> R$ <span><?php echo $produto['preco_venda']; ?></span> -- <?php echo $produto['nome']; ?>
 
-                <input type="number" name="quantidade[<?php echo $produto['idproduto'];?>]" value="1" min="1">
-            </li>
+                    <input type="number" name="quantidade[<?php echo $produto['idproduto']; ?>]" value="1" min="1">
+                </li>
             <?php endforeach; ?>
         </ul>
 
         <input type="submit" value="Adicionar selecionados ao carrinho">
     </form>
 
-    <a href="carrinho.php">Ver carrinho</a>
+    <a href="carrinho.php">Ver carrinho</a> <br>
+    <a href="carrinho2.php">Ver carrinho2</a>
 </body>
 
 </html>
